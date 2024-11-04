@@ -1,5 +1,5 @@
 # Frontend Dockerfile for Angular
-FROM node:16 AS build
+FROM node:18 AS build
 WORKDIR /app
 COPY . .
 RUN npm install --legacy-peer-deps
