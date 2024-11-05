@@ -1,3 +1,5 @@
+# Angular Frontend Deployment
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: arsidevops-frontend
-  replicas: 2
+  replicas: 2 # Number of replicas
   template:
     metadata:
       labels:
@@ -14,11 +16,12 @@ spec:
     spec:
       containers:
         - name: arsidevops-frontend
-          image: arselenebelhayej/arsi-devops-frontend:latest
+          image: arselenebelhayej/arsi-devops-frontend:latest # Image for the frontend application
           imagePullPolicy: Always
           ports:
-            - containerPort: 80  # Typically frontend services run on port 80 for HTTP traffic
+            - containerPort: 80 # Typical HTTP port for frontend apps
 
+# Angular Frontend Service
 ---
 apiVersion: v1
 kind: Service
@@ -31,4 +34,4 @@ spec:
     - protocol: "TCP"
       port: 80
       targetPort: 80
-  type: NodePort
+  type: ClusterIP # Set to ClusterIP for internal access within Kind
